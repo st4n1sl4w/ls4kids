@@ -8,13 +8,11 @@
 	<p>(<em>First <strong>page</strong></em>)</p>
 	<script type="text/javascript">
 		var name = "Вова";
+		var index = 0;
 		console.log("Привіт " + name);
-		if (name == "Вова") {
-			console.log("Муділо, я тебе впізнав!");
-		} else if (name.length > 7) {
-			console.log("Вав, ти що індус?");
-		} else {
-			console.log("Ти що Пєтя?");
+		while (index < name.length) {
+			console.log((index + 1) + " => " + name[index]);
+			index++;
 		}
 	</script>
 </body>
