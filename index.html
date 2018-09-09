@@ -7,10 +7,18 @@
 	<h1>This is my page</h1>
 	<p>(<em>First <strong>page</strong></em>)</p>
 	<script type="text/javascript">
-		var name = "Вова";
-		for (var i = 0; i < name.length; i++) {
-			console.log((i + 1) + " => " + name[i]);
+		var name = "Станіслав";
+		var rname = "";
+		for (var i = name.length - 1; i >= 0; i--) {
+			if (i == name.length - 1) {
+				rname += name[i].toUpperCase();
+			} else if (i == 0) {
+				rname += name[i].toLowerCase();
+			} else {
+				rname += name[i];
+			}
 		}
+		console.log("Привіт " + name + " чи ти " + rname + "?");
 	</script>
 </body>
 </html>
