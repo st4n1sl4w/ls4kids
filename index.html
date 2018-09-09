@@ -8,11 +8,8 @@
 	<p>(<em>First <strong>page</strong></em>)</p>
 	<script type="text/javascript">
 		var name = "Вова";
-		var index = 0;
-		console.log("Привіт " + name);
-		while (index < name.length) {
-			console.log((index + 1) + " => " + name[index]);
-			index++;
+		for (var i = 0; i < name.length; i++) {
+			console.log((i + 1) + " => " + name[i]);
 		}
 	</script>
 </body>
