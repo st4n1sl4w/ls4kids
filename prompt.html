@@ -30,13 +30,14 @@
         for (var j = 0; j < word.length; j++) {
             answerArray[j] = "_";
         }
-        
+
         var remainingLetters = word.length;
-                
-        while (remainingLetters > 0) {
+        var tries = 0;
+
+        while (remainingLetters > 0 && tries++ < 12) {
             alert(answerArray.join(" "));
             var guess = prompt("Guess a letter, or click Cancel to stop plaing.");
-            if (guess === null) {
+            if (guess === "") {
                 break;
             } else if (guess.length !== 1) {
                 alert("Pleas enter a single letter.");
@@ -44,7 +45,7 @@
                 guess = guess.toLowerCase();
                 // Update the game state with the guess
                 for (var j = 0; j < word.length; j++) {
-                    if (word[j] === guess) {
+                    if (word[j] === guess && answerArray[j] === "_") {
                         answerArray[j] = guess;
                         remainingLetters--;
                     }
@@ -53,7 +54,7 @@
         }
         alert(answerArray.join(" "));
         alert("Good job! The answer was " + word);
-        
+
     </script>
 </body>
 </html>
