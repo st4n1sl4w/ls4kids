@@ -13,82 +13,19 @@
 	</ol>
 	<a href="http://xkcd.com" title="Comicses">Click here</a>
 	<script>
-        var words = [
-            "javascript",
-            "monkey",
-            "amazing",
-            "pancake",
-            "cat",
-            "eat",
-            "crow",
-            "spike",
-        ];
-
-        var pickWord = function () {
-             // Return random number
-            return words[Math.floor(Math.random() * words.length)];
-        };
-
-        var setupAnswerArray = function (word) {
-            // Return answers array
-            var answerArray = [];
-            for (var j = 0; j < word.length; j++) {
-                answerArray[j] = "_";
+        var reverse = function(a) {
+            var r = [];
+            for (var i = 0, j = a.length - 1; i < a.length; i++, j--) {
+                r[i] = a[j];
             }
-            return answerArray;
+            return r;
         };
 
-        var showPlayerProgress = function (answerArray) {
-            // Use alert to show player progress
-            alert(answerArray);
-        };
-
-        var getGuess = function () {
-            // Use prompt to get answer gues
-            var guess = prompt("Please, enter your guess below:");
-            return guess.toLowerCase();
-        };
-
-        var upgateGameState = function (guess, word, answerArray) {
-            // Update answers array and return number of guess matches
-            var matchCount = 0;
-            for (var j = 0; j < word.length; j++) {
-                if (word[j] === guess && answerArray[j] === "_") {
-                    answerArray[j] = guess;
-                    matchCount++;
-                }
-            }
-            return matchCount;
-        };
-
-        var showAnswerAndCongratulatePlayer = function (answeraAray) {
-            // Use alert to show answer and congratulate player
-            alert('The word was "' + answeraAray.join("") +'"');
-        };
-
-        var word = pickWord();
-        console.log('Selected word is "' + word + '"');
-
-        var answerArray = setupAnswerArray(word);
-        console.log('Answer array is "' + answerArray + '"');
-
-        var remainingLetters = word.length;
-        console.log('Word length is "' + word.length + '"');
-
-        while (remainingLetters > 0) {
-            showPlayerProgress(answerArray);
-            var guess = getGuess();
-            if (guess === null) {
-                console.log('Guess is null');
-                break;
-            } else if (guess.length != 1){
-                alert("Please enter a single letter");
-            } else {
-                var correctGuesses = upgateGameState(guess, word, answerArray);
-                remainingLetters -= correctGuesses;
-            }
-        }
-        showAnswerAndCongratulatePlayer(answerArray);
+        a = [1, 2, 4, 7, 9];
+        b = [7, 3, 0, 8, 9, 2, 0, 1];
+        
+        console.log("Original: " + a + ", reversed: " + reverse(a) + ".");
+        console.log("Original: " + b + ", reversed: " + reverse(b) + ".");
     </script>
 </body>
 </html>
