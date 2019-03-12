@@ -13,19 +13,15 @@
 	</ol>
 	<a href="http://xkcd.com" title="Comicses">Click here</a>
 	<script>
-        var reverse = function(a) {
-            var r = [];
-            for (var i = 0, j = a.length - 1; i < a.length; i++, j--) {
-                r[i] = a[j];
+        var maks = function (a) {
+            var m = a[0];
+            for(var r = 1; r < a.length; r ++) {
+                if (m < a[r]) {
+                    m = a[r];
+                }
             }
-            return r;
-        };
-
-        a = [1, 2, 4, 7, 9];
-        b = [7, 3, 0, 8, 9, 2, 0, 1];
-        
-        console.log("Original: " + a + ", reversed: " + reverse(a) + ".");
-        console.log("Original: " + b + ", reversed: " + reverse(b) + ".");
+            return m;
+      };
     </script>
 </body>
 </html>
