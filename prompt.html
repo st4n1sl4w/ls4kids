@@ -31,12 +31,47 @@
             return s
         };
         
-         var multiply = function (a) {
-            for(var r = 2; r < a.length; r+=3) { 
+        var multiply = function (a) {
+            var m = 1;
+            for(var i = 2; i < a.length; i+=3) {
+                m *= a[i];
             }
              
+            return m
+        };
+
+        var sum_gt5 = function (a) {
+            var s = 0;
+            for (var i = 0; i < 5; i++) {
+                if (a[i] > 5) {
+                    s += a[i];
+                }
+               
+            }
             return s
-        };    
+        };
+        var squareOfNumbers = function (a) {
+            var s = [];
+            for (var i = 0; i < a.length; i++) {
+                s[i] = a[i] * a[i];
+                //console.log(s);
+            }
+            return s;
+        }
+        var funk_1 = function (a) {
+            var s = [a[0]];
+            for (var i = 1; i < a.length; i++) {
+                s[i] = s[i-1] + a[i];
+            }
+            return s
+        }
+        var funk_2 = function (a) {
+            var s = [];
+            for (var i = 0; i < a.length; i++) {
+                s[i] = a[i] * i; 
+            }
+            return s;
+        }
     </script>
 </body>
 </html>
