@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>plaing with DOM</title>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+</head>
+<body>
+  <h1 id="main-heading">Hello world</h1>
+   <script>
+    //var newHeadingText = prompt("Please provide a new heading:");
+    //$("#main-heading").text(newHeadingText);
+    /*for (var i = 0; i < 3; i++) {
+        var hobby = prompt("Tell me one of hobbies");
+        $("body").append("<p>" + hobby + "</p>");   
+    }*/
+    $("h1").slideUp(1000).slideDown(1111);   
+    $("h1").text("This is fade out").fadeOut(3000).fadeIn(3333);   
+   </script>  
+</body>
+</html>
