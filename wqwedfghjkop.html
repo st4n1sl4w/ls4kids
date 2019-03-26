@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mousemove</title>
+</head>
+<body>
+    <h1 id="heading">Hello world!</h1>
+    
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    
+    <script>
+    /*$("html").click(function (event) {
+        $("#heading").offset({
+          left: event.pageX,
+          top: event.pageY 
+        });                   
+    });*/
+    var x = 0;
+    var y = 0;
+    var s = 0;
+
+    var moveHeader = function () {
+        $("h1").offset({
+            left: x,
+            top: y
+        });
+        if (s == 0) {
+            if (x == 200) {
+                s = 1;
+            } else {
+                x++;
+            }
+        } else if (s == 1) {
+            if (y == 200) {
+                s = 2;
+            } else {
+                y++;
+            }
+        } else if (s == 2) {
+            if (x == 0) {
+                s = 3;
+            } else {
+                x--;
+            }
+        } else {
+            if (y == 0) {
+                s = 0;
+            } else {
+                y--;
+            }
+        }
+    };
+
+    var speedInterval = 10;
+    var interval = setInterval(moveHeader, speedInterval);
+    var clickCount = 0;
+    $("h1").text("Clicks: " + clickCount);
+    $("h1").click(function (event) {
+        clickCount++;
+        if (clickCount == 10) {
+            $("h1").text("You Win!");
+        } else {
+            $("h1").text("Clicks: " + clickCount);
+            clearInterval(interval);
+            speedInterval--;
+            interval = setInterval(moveHeader, speedInterval);
+        }
+    });        
+    </script>    
+</body>
+</html>
