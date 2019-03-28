@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <h1 id="heading">Find the buired treasure!</h1>
+ 
+ <img id="map" width=800 height=800 src="http://nostarch.com/images/treasuremap.png">   
+ 
+ <p id="distanse"></p>
+ <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+ <script>
+ var getRandomNumber = function (size) {
+     return Math.floor(Math.random() * size);
+ };
+    
+ var getDistanse = function (event, target) {
+     var diffX = event.offsetX - target.x;
+     var diffY = event.offsetY - target.y;
+     return Math.sqrt((diffX * diffX) + (diffY * diffY));
+ };
+    
+var getDistanseHint = function (distanse) {
+    if (distanse < 10) {
+        return "Boiling hot";
+    } else if (distanse < 20) {
+      return "Really hot";
+    } else if (distanse < 40) {
+      return "Hot"; 
+    } else if (distanse < 80) {
+      return "Warm";
+    } else if (distanse < 160) {
+      return "cold";
+    } else if (distanse < 320) {
+      return "really cold";
+    } else {
+      return "Freezing"
+    }
+};
+var width = 800;
+var height = 800;
+var clicks = 0;
+var clicked = function () {     
+if (clicks > 20)
+alert ("GAME OVER!!!!")   
+};
+var target = {
+    x: getRandomNumber(width),
+    y: getRandomNumber(height)
+};
+    
+$("#map").click(function(event) {
+   clicks++;
+    
+    var distanse = getDistanse(event, target);
+    
+    var distanseHint = getDistanseHint(distanse);
+    
+    $("#distanse").text(distanseHint);
+    
+    if (distanse < 8) {
+        alert("Found the treasure in " + clicks + "clicks!")
+    }
+});    
+</script>    
+</body>
+</html>
