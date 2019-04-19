@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="640" height="480"></canvas> 
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        /*ctx.fillStyle = "Red";
+        ctx.fillRect(75, 25, 50, 50);
+        ctx.fillStyle = "Green";
+        ctx.fillRect(95, 75, 10, 30);
+        ctx.fillRect(40, 95, 120, 10);
+        ctx.fillStyle = "Purple";
+        ctx.fillRect(75, 105, 50, 70);
+        ctx.fillRect(65, 105, 10, 120);
+        ctx.fillRect(125, 105, 10, 120);*/
+        
+        var circle = function (x, y, radius, fillCircle=false) {
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI* 2, false);
+          ctx.stroke();
+          if (fillCircle) {
+              ctx.fill();
+          }
+        };
+        
+        ctx.lineWidth = 4;
+        
+        // Snowman head
+        
+        ctx.strokeStyle = "Black";
+        
+        circle(100, 70, 50);
+        
+        circle(120, 60, 5, true);
+        circle(80, 60, 5, true);
+        
+        ctx.strokeStyle = "Orange";
+        ctx.fillStyle = "Orange";
+        circle(100, 80, 5, true);
+        
+        // Snowman body
+        
+        ctx.strokeStyle = "Black";
+        ctx.fillStyle = "Black";
+        
+        circle(100, 190, 70);
+        
+        circle(100, 150, 5, true);
+        circle(100, 190, 5, true);
+        circle(100, 230, 5, true);
+    </script>   
+</body>
+</html>
