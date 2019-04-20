@@ -19,11 +19,17 @@
         
         var canvas  = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
-        $("html").click(function (event) {
-             ctx.strokeStyle = "Black";
-             ctx.fillStyle = "Black";
-             circle(event.pageX, event.pageY, 5, true);
+        $("html").mousedown(function (event) {
+             $("html").mousemove(function (event) {
+                ctx.strokeStyle = "Black";
+                ctx.fillStyle = "Black";
+                circle(event.pageX, event.pageY, 5, true);
+             });
         });
+        $("html").mouseup(function (event) {
+             $("html").off('mousemove');
+        });
+        
     </script>   
 </body>
 </html>
