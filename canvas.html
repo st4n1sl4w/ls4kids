@@ -8,34 +8,22 @@
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <canvas id="canvas" width="640" height="480"></canvas> 
     <script>
-        var canvas = document.getElementById("canvas");
+        var circle = function (x, y, radius, fillCircle=false) {
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI* 2, false);
+          ctx.stroke();
+          if (fillCircle) {
+              ctx.fill();
+          }
+        };
+        
+        var canvas  = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
-        
-        var drawpoints = function (p) {
-            var point = p[0];
-            ctx.beginPath();
-            ctx.moveTo(point[0], point[1]);
-            for (var i = 1; i < p.length; i++) {
-                point = p[i];
-                ctx.lineTo(point[0], point[1]);
-            }
-            ctx.stroke();
-        };    
-        
-        var points = [
-            [50, 50],
-            [50, 100],
-            [25, 120],
-            [100, 50],
-            [70, 90],
-            [100, 90],
-            [70, 120]
-        ];
-        
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = "Black";
-        
-        drawpoints(points);
+        $("html").click(function (event) {
+             ctx.strokeStyle = "Black";
+             ctx.fillStyle = "Black";
+             circle(event.pageX, event.pageY, 5, true);
+        });
     </script>   
 </body>
 </html>
