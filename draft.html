@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <canvas id="canvas" width="640" height="480"></canvas> 
+    <script>
+        var circle = function (x, y, radius, fillCircle=false) {
+          ctx.beginPath();
+          ctx.arc(x, y, radius, 0, Math.PI* 2, false);
+          ctx.stroke();
+          if (fillCircle) {
+              ctx.fill();
+        
+          }
+        };
+        
+        var drawMan = function () {
+            ctx.strokeRect(50, 50, 30, 30);
+            
+            ctx.beginPath();
+            ctx.moveTo(65, 80);
+            ctx.lineTo(65, 140);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(65, 110);
+            ctx.lineTo(30, 90);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(65, 110);
+            ctx.lineTo(100, 90);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(65, 140);
+            ctx.lineTo(30, 180);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(65, 140);
+            ctx.lineTo(100, 180);
+            ctx.stroke();
+        }
+        
+        var canvas  = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        ctx.strokeStyle = "Black";
+        ctx.lineWidth = 5;
+        
+        drawMan();
+        
+    </script>     
+</body>
+</html>

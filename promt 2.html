@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    </head>
+<body>
+	<h1>This is my page</h1>
+	<p>(<em>First <strong>page</strong></em>)</p>
+	<ol>
+		<li>I</li>
+		<li>like</li>
+		<li>HTML</li>
+	</ol>
+	<a href="http://xkcd.com" title="Comicses">Click here</a>
+	<canvas id="canvas" width="640" height="480"></canvas> 
+	<script>
+        var drawMan = function (part) {
+            if (part == 0) {
+                ctx.strokeRect(50, 50, 30, 30);
+                return;
+            }
+            
+            if (part == 1) {
+                ctx.beginPath();
+                ctx.moveTo(65, 80);
+                ctx.lineTo(65, 140);
+                ctx.stroke();
+                return;
+            }
+            
+            if (part == 2) {
+                ctx.beginPath();
+                ctx.moveTo(65, 110);
+                ctx.lineTo(30, 90);
+                ctx.stroke();
+                return;
+            }
+
+            if (part == 3) {
+                ctx.beginPath();
+                ctx.moveTo(65, 110);
+                ctx.lineTo(100, 90);
+                ctx.stroke();
+                return;
+            }
+            
+            if (part == 4) {
+                ctx.beginPath();
+                ctx.moveTo(65, 140);
+                ctx.lineTo(30, 180);
+                ctx.stroke();
+                return;
+            }
+            
+            if (part == 5) {    
+                ctx.beginPath();
+                ctx.moveTo(65, 140);
+                ctx.lineTo(100, 180);
+                ctx.stroke();
+                return;
+            }
+        }
+        
+        var canvas  = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        ctx.strokeStyle = "Black";
+        ctx.lineWidth = 5;
+        
+        var words = [
+            "javascript",
+            "monkey",
+            "amazing",
+            "pancake",
+            "cat",
+            "eat",
+            "crow",
+            "spike",
+        ];
+
+        var pickWord = function () {
+             // Return random number
+            return words[Math.floor(Math.random() * words.length)];
+        };
+
+        var setupAnswerArray = function (word) {
+            // Return answers array
+            var answerArray = [];
+            for (var j = 0; j < word.length; j++) {
+                answerArray[j] = "_";
+            }
+            return answerArray;
+        };
+
+        var showPlayerProgress = function (answerArray) {
+            // Use alert to show player progress
+            alert(answerArray);
+        };
+
+        var getGuess = function () {
+            // Use prompt to get answer gues
+            var guess = prompt("Please, enter your guess below:");
+            return guess.toLowerCase();
+        };
+
+        var upgateGameState = function (guess, word, answerArray) {
+            // Update answers array and return number of guess matches
+            var matchCount = 0;
+            for (var j = 0; j < word.length; j++) {
+                if (word[j] === guess && answerArray[j] === "_") {
+                    answerArray[j] = guess;
+                    matchCount++;
+                }
+            }
+            return matchCount;
+        };
+
+        var showAnswerAndCongratulatePlayer = function (answeraAray) {
+            // Use alert to show answer and congratulate player
+            alert('The word was "' + answeraAray.join("") +'"');
+        };
+
+        var word = pickWord();
+        console.log('Selected word is "' + word + '"');
+
+        var answerArray = setupAnswerArray(word);
+        console.log('Answer array is "' + answerArray + '"');
+
+        var remainingLetters = word.length;
+        console.log('Word length is "' + word.length + '"');
+        
+        var incorrectGuesses = 0;
+
+        while (remainingLetters > 0) {
+            showPlayerProgress(answerArray);
+            var guess = getGuess();
+            if (guess === null) {
+                console.log('Guess is null');
+                break;
+            } else if (guess.length != 1){
+                alert("Please enter a single letter");
+            } else {
+                var correctGuesses = upgateGameState(guess, word, answerArray);
+                remainingLetters -= correctGuesses;
+                if (correctGuesses == 0) {
+                    drawMan(incorrectGuesses);
+                    incorrectGuesses++;
+                    if (incorrectGuesses == 6) {
+                        break;
+                    }
+                }
+            }
+        }
+        showAnswerAndCongratulatePlayer(answerArray);
+    </script>
+</body>
+</html>
