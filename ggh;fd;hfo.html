@@ -18,7 +18,7 @@
         var height = canvas.height;
         var radius = 10;
         
-        var Ball = function () {
+        var Balls = function () {
             this.x = width/2;
             this.y = height/2;
             this.xSpeed = randomize();
@@ -35,16 +35,16 @@
             }
         };
         
-        Ball.prototype.draw = function () {
+        Balls.prototype.draw = function () {
             circle(this.x, this.y, radius, true);
         };
         
-        Ball.prototype.move = function () {
+        Balls.prototype.move = function () {
             this.x += this.xSpeed;
             this.y += this.ySpeed;    
         };
         
-        Ball.prototype.checkCollision = function () {
+        Balls.prototype.checkCollision = function () {
             if (this.x < radius || this.x > width - radius) {
                 this.xSpeed = -this.xSpeed;
             }
@@ -53,13 +53,18 @@
             }    
         };
     
-        var ball = new Ball();
+        var balls = [];
+        for (var b = 0; b < 10; b++) {
+            balls[b] = new Balls();
+        }
         
         setInterval(function() {
             ctx.clearRect(0, 0, width, height);
-            ball.draw();
-            ball.move();
-            ball.checkCollision();  
+            for (var b = 0; b < 10; b++) {
+                balls[b].draw();
+                balls[b].move();
+                balls[b].checkCollision();
+            }
             ctx.strokeRect(0, 0, width, height);    
         }, 30);            
     </script>
