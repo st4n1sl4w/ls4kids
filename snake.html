@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>snake</title>
+</head>
+<body>
+    <canvas id = "canvas" width = "400" height = "400"></canvas>
+   
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    
+    <script>
+    var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        var width = canvas.width;
+        var height = canvas.height;
+        
+        var intervalId = setInterval(function () {
+            ctx.clearRect(0, 0, width, height);
+            //drawScore();
+            //snake.move();
+            //snake.draw();
+            //apple.draw();
+            drawBorder();
+        }, 100);
+        
+        var blockSize = 10;
+        var widthInBlocks = width / blockSize;
+        var heightInBlocks = height / blockSize;
+        var score = 0;
+        
+        var drawBorder = function () {
+            ctx.fillStyle = "Gray";
+            ctx.fillRect(0, 0, width, blockSize);
+            ctx.fillRect(0, height - blockSize, width, blockSize);
+            ctx.fillRect(0, 0, blockSize, height);
+            ctx.fillRect(width - blockSize, 0, blockSize, height);
+        };
+    </script>
+</body>
+</html>
