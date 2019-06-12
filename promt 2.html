@@ -4,14 +4,6 @@
 	<title></title>
     </head>
 <body>
-	<h1>This is my page</h1>
-	<p>(<em>First <strong>page</strong></em>)</p>
-	<ol>
-		<li>I</li>
-		<li>like</li>
-		<li>HTML</li>
-	</ol>
-	<a href="http://xkcd.com" title="Comicses">Click here</a>
 	<canvas id="canvas" width="640" height="480"></canvas> 
 	<script>
         var drawMan = function (part) {
@@ -94,7 +86,12 @@
 
         var showPlayerProgress = function (answerArray) {
             // Use alert to show player progress
-            alert(answerArray);
+            ctx.font = "20px Courier";
+            ctx.fillStyle = "Black";
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            var txt = answerArray.join(' ');
+            ctx.fillText(txt, 10, 200);
         };
 
         var getGuess = function () {
