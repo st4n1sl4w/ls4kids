@@ -17,12 +17,12 @@
         var height = canvas.height;
         
         var intervalId = setInterval(function () {
-            ctx.clearRect(0, 0, width, height);
-            drawScore();
+            //ctx.clearRect(0, 0, width, height);
+            updateScore();
             //snake.move();
             //snake.draw();
             //apple.draw();
-            drawBorder();
+            //drawBorder();
         }, 100);
         
         var blockSize = 10;
@@ -38,12 +38,37 @@
             ctx.fillRect(width - blockSize, 0, blockSize, height);
         };
         
-        var drawScore = function () {
+        drawBorder();
+        
+        var drawScoreInit = function () {
+            var txt_x = width - blockSize - 110;
             ctx.font = "20px Courier";
             ctx.fillStyle = "Black";
             ctx.textAlign = "left";
             ctx.textBaseline = "top";
-            ctx.fillText("Score: " + score, blockSize, blockSize);
+            ctx.fillText("Score: 0", txt_x, blockSize);
+        };
+        
+        drawScoreInit();
+        
+        var updateScore = function () {
+            var txt_x = width - blockSize - 25;
+            ctx.clearRect(txt_x, blockSize, 25, 20);
+            ctx.font = "20px Courier";
+            ctx.fillStyle = "Black";
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+            ctx.fillText(score++, txt_x, blockSize);
+            if (score == 100) score = 0;
+        };
+        
+        var gemeOver = function () {
+            clearInterval(intervalId);
+            ctx.font = "60px Courier";
+            ctx.fillStyle = "Black";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("Game Over", width / 2, height / 2);
         };
     </script>
 </body>
