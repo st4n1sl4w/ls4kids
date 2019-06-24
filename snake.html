@@ -41,7 +41,6 @@
         };
         
         var gameOver = function () {
-            clearInterval(intervalId);
             ctx.font = "60px Courier";
             ctx.fillStyle = "Black";
             ctx.textAlign = "center";
@@ -116,12 +115,10 @@
                 newHead = new Block(head.col - 1, head.row);    
             } else if (this.direction === "up") {
                 newHead = new Block(head.col, head.row - 1);    
-            } else if (this.direction === "stop") {
-                ;    
             }
             
             if (this.checkCollision(newHead)) {
-                gameOver();
+                isGameOver = true;
                 return;
             }
             
@@ -129,6 +126,10 @@
             
             if (newHead.egual(apple.position)) {
                 score++;
+                animationTime -= 10;
+                if (animationTime == 40) {
+                    animationTime = 50;
+                }
                 apple.move();
             } else {
                 this.segments.pop();
@@ -186,17 +187,16 @@
         var snake = new Snake;
         var apple = new Apple;
         
-        var intervalId = setInterval(function () {
+        var update = function () {
             ctx.clearRect(0, 0, width, height);
             drawScore();
             snake.move();
             snake.draw();
             apple.draw();
             drawBorder();
-        }, 100);
+        };
         
         var directions = {
-            32: "stop",
             37: "left",
             38: "up",
             39: "right",
@@ -204,11 +204,31 @@
         };
         
         $("body").keydown(function(event) {
-            var newDirection = directions[event.keyCode];
-            if (newDirection !== undefined) {
-                snake.setDirection(newDirection);
+            if (event.keyCode == 32) {
+                isPaused = !isPaused;
+            } else if (!isPaused) {
+                var newDirection = directions[event.keyCode];
+                if (newDirection !== undefined) {
+                    snake.setDirection(newDirection);
+                }
             }
-        }); 
+        });
+        
+        var animationTime = 200;
+        var isPaused = false;
+        var isGameOver = false;
+        var gameLoop = function () {
+            if (isGameOver) {
+                gameOver();
+            } else {
+                if (!isPaused) {
+                    update();
+                }
+                setTimeout(gameLoop, animationTime);
+            }
+        };
+        
+        gameLoop();
     </script>
 </body>
 </html>
