@@ -95,9 +95,11 @@
         
         
         Snake.prototype.draw = function () {
-            for (var j = 0; j < this.segments.length; j ++) {
-                this.segments[j].drawSquare("Blue");    
-            }
+            this.segments[0].drawSquare("Blue");
+            for (var j = 1; j < this.segments.length; j ++) {
+                var colors = ["Orange", "Red"];
+                this.segments[j].drawSquare(colors[j % colors.length]);
+            }    
         };
         
         Snake.prototype.move = function () {
@@ -114,6 +116,8 @@
                 newHead = new Block(head.col - 1, head.row);    
             } else if (this.direction === "up") {
                 newHead = new Block(head.col, head.row - 1);    
+            } else if (this.direction === "stop") {
+                ;    
             }
             
             if (this.checkCollision(newHead)) {
@@ -192,6 +196,7 @@
         }, 100);
         
         var directions = {
+            32: "stop",
             37: "left",
             38: "up",
             39: "right",
